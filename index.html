@@ -64,14 +64,12 @@
         const p1 = particle1.position_temp;
         const p2 = particle2.position_temp;
 
-        
-
         // TODO: ここに距離制約の投影の処理を実装する
         const w1 = 1/particle1.mass;
         const w2 = 1/particle2.mass;
         const pDif = vec2.sub([], p1, p2);
-        var coef1 = -(w1/(w1+w2)) * (vec2.len(pDif) - this.restlength) / vec2.len(pDif);
-        var coef2 = (w2/(w1+w2)) * (vec2.len(pDif) - this.restlength) / vec2.len(pDif);
+        var coef1 = -(w1/(w1+w2)) * (vec2.len(pDif) - this.restlength) / vec2.len(pDif) * stiffness
+        var coef2 = (w2/(w1+w2)) * (vec2.len(pDif) - this.restlength) / vec2.len(pDif) * stiffness
 
         const delta1 = vec2.mul([], pDif, [coef1, coef1])
         const delta2 = vec2.mul([], pDif, [coef2, coef2])
@@ -469,6 +467,7 @@
         </ul>
       </td>
     </tr>
+    <div>距離制約を実装した。</div>
   </tbody></table>
 
   <div class="glitchButton" style="position:fixed;top:20px;right:20px;"><button class="glitchButtonElement"><img alt="This is a Glitch app!" width="50px" src="./index_files/1973df30-22e4-49d9-94b0-9a3b017066bc_GlitchLogo_Color.svg"></button><div class="glitchOpenWindowElement" style="display: none;"><div class="project">
